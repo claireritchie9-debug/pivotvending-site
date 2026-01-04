@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pivot Vending - Under Development</title>
+    
+    <!-- Carbon Design System CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@carbon/styles@1.59.0/css/styles.min.css">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f62fe 0%, #001d6c 100%);
+            --accent-color: #42be65;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #161616;
+            color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background grid */
+        .background-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 98, 254, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 98, 254, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+        
+        /* Floating gradient orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-gradient);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #42be65 0%, #24a148 100%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(30px, 30px);
+            }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 3rem;
+            text-align: center;
+            background: rgba(38, 38, 38, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(141, 141, 141, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: slideIn 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: #f4f4f4;
+            animation: slideIn 0.8s ease-out 0.3s both;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(66, 190, 101, 0.15);
+            border: 1px solid var(--accent-color);
+            border-radius: 2px;
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: slideIn 0.8s ease-out 0.4s both;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+        
+        .message {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: #c6c6c6;
+            margin-bottom: 2rem;
+            animation: slideIn 0.8s ease-out 0.5s both;
+        }
+        
+        .contact {
+            padding: 1.5rem;
+            background: rgba(22, 22, 22, 0.6);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 2px;
+            animation: slideIn 0.8s ease-out 0.6s both;
+        }
+        
+        .contact-label {
+            font-size: 0.875rem;
+            color: #8d8d8d;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-email {
+            font-size: 1.25rem;
+            color: #0f62fe;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .contact-email:hover {
+            color: #78a9ff;
+            transform: translateX(4px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <div class="container">
+        <div class="logo">Pivot Vending</div>
+        
+        <h1>Welcome</h1>
+        
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Currently Under Development
+        </div>
+        
+        <p class="message">
+            We're working hard to bring you something special. Our platform is currently being built and will be launching soon.
+        </p>
+        
+        <div class="contact">
+            <div class="contact-label">Get in Touch</div>
+            <a href="mailto:access@pivotvending.au" class="contact-email">
+                access@pivotvending.au
+            </a>
+        </div>
+    </div>
+</body>
+</html>
