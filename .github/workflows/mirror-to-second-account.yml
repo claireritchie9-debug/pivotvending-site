@@ -1,0 +1,35 @@
+name: Mirror to Second GitHub Account
+
+on:
+  push:
+    branches:
+      - main  # Change to 'master' if that's your default branch
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout primary repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MIRROR_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name "Pivot Vending Mirror Bot"
+          git config --global user.email "bot@pivotvending.au"
+      
+      - name: Push to mirror repository
+        run: |
+          git remote add mirror ${{ secrets.MIRROR_REPO_URL }}
+          git push mirror --all --force
+          git push mirror --tags --force
