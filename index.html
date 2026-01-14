@@ -3,268 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pivot Vending - Under Development</title>
-    
-    <!-- Carbon Design System CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@carbon/styles@1.59.0/css/styles.min.css">
-    
+    <title>Pivot Vending | Accessible Smart Coolers</title>
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #0f62fe 0%, #001d6c 100%);
-            --accent-color: #42be65;
-        }
-        
-        * {
+        /* DESIGN STYLES */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #161616;
-            color: #f4f4f4;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Animated background grid */
-        .background-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(15, 98, 254, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(15, 98, 254, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
-            animation: gridMove 20s linear infinite;
-        }
-        
-        @keyframes gridMove {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(50px, 50px);
-            }
-        }
-        
-        /* Floating gradient orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 15s ease-in-out infinite;
-        }
-        
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary-gradient);
-            top: -200px;
-            left: -200px;
-            animation-delay: 0s;
-        }
-        
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #42be65 0%, #24a148 100%);
-            bottom: -150px;
-            right: -150px;
-            animation-delay: 5s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(30px, 30px);
-            }
-        }
-        
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            padding: 3rem;
-            text-align: center;
-            background: rgba(38, 38, 38, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(141, 141, 141, 0.2);
-            border-radius: 4px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .logo {
-            display: inline-block;
-            font-size: 2.5rem;
-            font-weight: 600;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: slideIn 0.8s ease-out 0.2s both;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        h1 {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            color: #f4f4f4;
-            animation: slideIn 0.8s ease-out 0.3s both;
-        }
-        
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(66, 190, 101, 0.15);
-            border: 1px solid var(--accent-color);
-            border-radius: 2px;
-            color: var(--accent-color);
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            animation: slideIn 0.8s ease-out 0.4s both;
-        }
-        
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.2);
-            }
-        }
-        
-        .message {
-            font-size: 1.125rem;
             line-height: 1.6;
-            color: #c6c6c6;
-            margin-bottom: 2rem;
-            animation: slideIn 0.8s ease-out 0.5s both;
+            color: #333;
         }
-        
-        .contact {
-            padding: 1.5rem;
-            background: rgba(22, 22, 22, 0.6);
-            border-left: 3px solid var(--accent-color);
-            border-radius: 2px;
-            animation: slideIn 0.8s ease-out 0.6s both;
+
+        /* Header / Hero Section */
+        header {
+            background-color: #0056b3; /* Professional Blue */
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
         }
+        header h1 { margin: 0; font-size: 3rem; font-weight: 700; }
+        header p { font-size: 1.5rem; font-weight: 300; margin-top: 10px; }
         
-        .contact-label {
-            font-size: 0.875rem;
-            color: #8d8d8d;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Layout */
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
         }
-        
-        .contact-email {
-            font-size: 1.25rem;
-            color: #0f62fe;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
+
+        /* Sections */
+        section { padding: 3rem 0; border-bottom: 1px solid #eee; }
+        h2 { color: #0056b3; font-size: 2rem; margin-bottom: 1rem; }
+        h3 { color: #444; font-size: 1.3rem; margin-top: 1.5rem; }
+
+        /* Feature Grid (The Machine Benefits) */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-box {
+            flex: 1;
+            min-width: 250px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #0056b3;
+        }
+
+        /* Button */
+        .btn {
             display: inline-block;
+            background: #e67e22; /* High contrast orange */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            font-weight: bold;
         }
-        
-        .contact-email:hover {
-            color: #78a9ff;
-            transform: translateX(4px);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 2rem 1.5rem;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .message {
-                font-size: 1rem;
-            }
+        .btn:hover { background: #d35400; }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
-    <div class="background-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    
-    <div class="container">
-        <div class="logo">Pivot Vending</div>
-        
-        <h1>Welcome</h1>
-        
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Currently Under Development
+
+    <header>
+        <div class="container">
+            <h1>Pivot Vending</h1>
+            <p>Smart. Simple. Accessible.</p>
+            <p style="font-size: 1rem; opacity: 0.9;">The New Age of Vending for Disability & Aged Care</p>
+            <a href="#contact" class="btn">Enquire Now</a>
         </div>
-        
-        <p class="message">
-            We're working hard to bring you something special. Our platform is currently being built and will be launching soon.
-        </p>
-        
-        <div class="contact">
-            <div class="contact-label">Get in Touch</div>
-            <a href="mailto:access@pivotvending.au" class="contact-email">
-                access@pivotvending.au
-            </a>
+    </header>
+
+    <section id="why-pivot">
+        <div class="container">
+            <h2>Why We Are Different</h2>
+            <p>Traditional vending machines are often barriers, not conveniences. Keypads are hard to read, coin slots jam, and bending down to retrieve items is difficult for many.</p>
+            <p><strong>Pivot Vending changes that with AI Smart Cooler technology.</strong></p>
+            
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Visual & Clear</h3>
+                    <p>No tiny codes. View products and costs clearly on the screen before you buy.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>No Bending Required</h3>
+                    <p>Grab your items from the easy-access shelf. No bending down to a low chute.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Cashless & Simple</h3>
+                    <p>Just tap and go. Select multiple items and pay in one single transaction.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>
+                Pivot Vending was born from a lifetime of experience in the care sector. 
+                With over 30 years as a Midwife and Nurse, and currently operating as an SDA Provider, 
+                I understand the importance of <strong>dignity and independence</strong>.
+            </p>
+            <p>
+                I saw how difficult standard machines were for those with limited mobility. 
+                Pivot Vending is my solution: technology that makes the "little things" like buying a snack easy for everyone.
+            </p>
+        </div>
+    </section>
+
+    <section id="vision" style="background-color: #f4faff;">
+        <div class="container">
+            <h2>A Vision for Employment</h2>
+            <p>
+                We believe this technology is more than just a convenience; it is an opportunity.
+            </p>
+            <p>
+                Pivot Vending is actively seeking partnerships with disability organizations to explore how these easy-to-manage machines 
+                can become business opportunities for people with disabilities. The cashless, app-based tracking makes stock management 
+                accessible, opening doors for entrepreneurship.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Partner With Us</h2>
+            <p>We are looking to place machines in accessible-focused locations across Perth.</p>
+            <p>
+                <strong>Email:</strong> access@pivotvending.au <br>
+                <strong>Location:</strong> Perth, Western Australia
+            </p>
+            <br>
+            <a href="mailto: access@pivotvending.au" class="btn">Send an Email</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Pivot Vending. Proudly WA Owned & Operated.</p>
+    </footer>
+
 </body>
 </html>
